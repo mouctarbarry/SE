@@ -187,6 +187,8 @@ void execute_test() {
  * Executes the command interpreter until the command 'quit' is entered.
  */
 void execute() {
+	
+	printf ("Instructions \nTappez :\n<add> pour ajouter\n<find> pour rechercher\n<remove> pour supprimer\n<Quit> pour sortir\n");
 	char buffer[CMD_BUFFER];
 	struct lexc *L;
 

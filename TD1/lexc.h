@@ -23,12 +23,14 @@ struct lexc *lexc_init(const char *name, const int mutable);
  *
  * @param      lexc             Lexicon to release.
  */
-void lexc_fini(struct lexc *lexc);
+void lexc_fini(struct lexc *lex);
 
-int lexc_add(struct lexc *lexc, const char *word);
-int lexc_remove(struct lexc *lexc, const char *word);
-int lexc_check(struct lexc *lexc, const char *word);
+int lexc_add(struct lexc *lex, const char *word);
+int lexc_remove(struct lexc *lex, const char *word);
+int lexc_check(struct lexc *lex, const char *word);
 
-int cmd_interpret(struct lexc *lexc, const char *cmd);
+int cmd_interpret(struct lexc *lex, const char *cmd);
+
+void print_lexc(struct lexc *lex);
 
 #endif
