@@ -110,23 +110,8 @@ int cmd_interpret(struct lexc *lex, const char *cmd)
 {	
 	char * action = malloc (30*sizeof (char));
 	char * word = malloc (30*sizeof (char));
-	int i = 0;
-	while (cmd[i] != ' ' || cmd[i] == '\n'){
-		action [i] = (cmd[i]);
-		i++;
-	}
-	if (cmd[i-1] == '\n' &&  (strcmp(action, "quit") == 1 || strcmp(action ,"print") == 1 ) ){
-		printf ("Mauvaise commande");
-		return 0;
-	}
-	int j = 0;
-	i = i+1;
-	while (cmd[i] != '\n'){
-		word [j] = cmd[i];
-		i++;
-		j++;
-	}
-	
+	sscanf (cmd, "%s %s", action, word);
+
 		if ( strcmp ( action,"find") == 0 ){
 			int res=1;
 			res = lexc_check (lex, word);
@@ -150,10 +135,10 @@ int cmd_interpret(struct lexc *lex, const char *cmd)
 			return 1;
 		}
 		else if (strcmp (action, "quit") == 0) { printf ("Fin du programme\n"); return 0;}
-		else { printf ("Commande inconne, sortie\n"); return 0; }
+		else { printf ("Commande inconnue, ressayez\n"); return 1; }
 }
 
-
+/*
 int main(){
 	char buffer[65];
 	struct lexc *L;
@@ -169,7 +154,7 @@ int main(){
 return 0;
 }
 
-
+*/
 
 
 

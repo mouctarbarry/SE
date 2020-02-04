@@ -1,0 +1,15 @@
+cd /tmp/
+mkdir projet
+cd projet 
+mkdir doc include src
+touch README 
+echo -e "Nom: BARRY \nPrénom: Mouctar" >> README
+touch include/func.h
+touch src/main.c
+touch src/func.c
+tree ../projet >> contents.txt
+cd /tmp/
+cp -r projet/.	 projetV2_scpt
+rm -r projet 
+tar -cf pv2.tar projetV2_scpt
+

@@ -188,7 +188,7 @@ void execute_test() {
  */
 void execute() {
 	
-	printf ("Instructions \nTappez :\n<add> pour ajouter\n<find> pour rechercher\n<remove> pour supprimer\n<Quit> pour sortir\n");
+	printf ("*** Instructions *** \n Tappez :\n	<add> pour ajouter un mot\n	<find> pour rechercher un mot\n	<remove> pour supprimer un mot\n	<print> pour afficher le lexique\n	<Quit> pour Quitter le programme\n");
 	char buffer[CMD_BUFFER];
 	struct lexc *L;
 
