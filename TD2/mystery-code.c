@@ -21,7 +21,11 @@ int main(int argc, char **argv) {
         evenSum.i += complexArray[i].i;
     }
 
+<<<<<<< HEAD
     for (i = 0; i != NUM_STEPS; i += 2) {
+=======
+    for (i = 1; i < NUM_STEPS; i += 2) {
+>>>>>>> 42dbe9b9197f8d031199fe5e1c48a6001e87a30a
         oddSum.r += complexArray[i].r;
         oddSum.i += complexArray[i].i;
     }

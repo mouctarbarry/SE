@@ -7,7 +7,21 @@
 // Affichage du contenu d'un fichier
 // \param	path			Nom/chemin du fichier à afficher
 // \return					-1 si échec à l'ouverture, 0 sinon
+<<<<<<< HEAD
 int print(const char *path) {  }
+=======
+int print(const char *path) {
+	IO_FILE fic;
+	fic = IO_open (path, O_RDONLY);
+	if (fic.desc == -1) return -1;
+	char c;
+	while (IO_char_read (fic, &c) >0) {
+		printf ("%c", c);
+	}	
+	IO_close (fic);	
+  return 0;
+}
+>>>>>>> 42dbe9b9197f8d031199fe5e1c48a6001e87a30a
 // Copie de fichier
 // \param	path1			Nom/chemin du fichier source
 // \param	path2			Nom/chemin du fichier destination

@@ -12,4 +12,3 @@ cd /tmp/
 cp -r projet/.	 projetV2_scpt
 rm -r projet 
 tar -cf pv2.tar projetV2_scpt
-
