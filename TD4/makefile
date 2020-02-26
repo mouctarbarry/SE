@@ -1,5 +1,5 @@
 run: ls_cmd 
-	./exec .
+	./exec makefile
 
 ls_cmd: lsCommand.c
 	gcc -Wall -g -o exec lsCommand.c
