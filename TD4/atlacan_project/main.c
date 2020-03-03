@@ -5,14 +5,16 @@
 
 int recupIndiceLocal (const char * path_name){
 			
-			char * pathcd = strdup (path_name);
+			char * pathcd = malloc (sizeof (char));
+			pathcd = strdup (path_name);
 			
-			int a = atl_cd(pathcd);
+			int a = atl_cd(path_name);
 			
-			printf ("deplacement dans recupIndiceLocal %d  -> %s\n", a, pathcd);
+			if (a==0)
+				printf ("\ndeplacement vers -> %s réussi\n", pathcd);
 			
 			struct atl_stat *fic;
-			char **path; 
+			char **path;
 			path = malloc (20*sizeof (char *) );
 			int nbElem;
 			int indiceTresor;
@@ -21,10 +23,10 @@ int recupIndiceLocal (const char * path_name){
 			
 			atl_ls (&path, &nbElem);
 			
+			fic = malloc (nbElem*sizeof (struct atl_stat));
 			
 			for (int i = 0; i<nbElem; i++){
 				
-				fic = malloc (nbElem*sizeof (struct atl_stat));
 				atl_stat(path[i], fic);
 				
 				if (atl_is_file(fic->mode) && fic->gid != GID_PERTONTAN && fic->gid ==GID_ABITHAN){
@@ -33,10 +35,11 @@ int recupIndiceLocal (const char * path_name){
 					indicelocal = indiceTresor;
 				}
 			}
+			free (fic);
+			free (pathcd);
 			atl_free_ls (path, nbElem);
 	return indicelocal;
 }
-
 
 
 
@@ -53,10 +56,10 @@ char * recupChemin (const char ** chemins, int cptChemin, int valindice){
 		// = malloc (20* sizeof (char));
 		
 		for (int i =0; i<cptChemin; i++){
-			char * path =  strdup(chemins[i]);
-			int a = atl_cd (path);
-			printf ("deplacement dans recupChemin %d\n", 0);
-			indiceLocal =  recupIndiceLocal (atl_getpwd());
+			
+			// int a = atl_cd (chemins[i]);
+			//	printf ("deplacement dans recupChemin %d\n", 0);
+			indiceLocal =  recupIndiceLocal (chemins[i]);
 			
 			if (indiceLocal < valindice){
 				return strdup (atl_getpwd());
@@ -84,7 +87,7 @@ int main (int argc, char *argv[]){
 			atl_ls (&path, &nbElem);
 			
 			const char ** chemins = malloc (30*sizeof(char *));
-			int valindice = 10;
+			int valindice;
 			
 			int x = 0;
 			
@@ -109,22 +112,25 @@ int main (int argc, char *argv[]){
 				}
 			}
 			
+			free (fic);
+			
 			printf ("\nOn est dans %s\n", strdup (atl_getpwd() ));
 			//printf ("Chemin à prendre %s il y'en a %d', indice lieux restants %d et y'a %d fic\n", chemin, cptChemin,
 				//				indiceTresor, cptFic); 
 
-
-			// 	char *s = strdup (recupChemin(chemins, cptChemin, valindice));
-			//	atl_cd(s);
+				
+				char *s = strdup (recupChemin(chemins, cptChemin, valindice));
+				atl_cd(s);
+				
+				printf("\nOn est dans %s\n ", s);
 			
-			printf ("%s\n", recupChemin(chemins, cptChemin, valindice) );
+			//printf ("%s\n", recupChemin(chemins, cptChemin, valindice) );
 			
 			
 								
 	} while (indiceTresor>0);
 			
 				
-		
 		
 atl_fini();	
 return 0;

@@ -2,7 +2,7 @@ run: compile
 	./exec
 	
 compile: main.c
-	gcc -Wall -g -o exec main.c -L. -latlacan
+	 gcc -g -o exec main.c atlacan.c
 clean:
 	rm exec
 
